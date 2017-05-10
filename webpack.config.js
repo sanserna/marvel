@@ -1,37 +1,68 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
+const cssProd = ExtractTextPlugin.extract({
+    fallback: 'style-loader',
+    use: ['css-loader', 'sass-loader'],
+    publicPath: '/dist'
+});
+
+const cssConfig = isProduction ? cssProd : cssDev;
+
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        app: './src/main.js'
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
-        filename: 'build.js'
+        filename: '[name].bundle.js'
     },
     module: {
         rules: [{
             test: /\.vue$/,
-            loader: 'vue-loader',
-            options: {
-                loaders: {
+            use: {
+                loader: 'vue-loader',
+                options: {
                     scss: 'vue-style-loader!css-loader!sass-loader',
                     sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
                 }
             }
         }, {
             test: /\.js$/,
-            loader: 'babel-loader',
+            use: 'babel-loader',
             exclude: /node_modules/
         }, {
             test: /\.scss$/,
-            loader: 'style-loader!css-loader?sourceMap!sass-loader'
+            use: cssConfig
         }, {
             test: /\.(png|jpg|gif|svg)$/,
-            loader: 'file-loader',
-            options: {
-                name: '[name].[ext]?[hash]'
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'images/[name].[ext]?[hash]'
+                }
+            }
+        }, {
+            test: /\.(woff2?)$/,
+            use: {
+                loader: 'url-loader',
+                options: {
+                    limit: 1000,
+                    name: 'fonts/[name].[ext]'
+                }
+            }
+        }, {
+            test: /\.(ttf|eot)$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[name].[ext]'
+                }
             }
         }]
     },
@@ -41,10 +72,22 @@ module.exports = {
         }
     },
     devServer: {
+        contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        hot: true,
         stats: 'errors-only'
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Marvel Heroes',
+            hash: true,
+            template: './src/index.html'
+        }),
+        new ExtractTextPlugin({
+            filename: '/css/[name].css',
+            disable: !isProduction,
+            allChunks: true
+        })
+    ],
     devtool: '#eval-source-map'
 };
 
