@@ -1,5 +1,5 @@
 <template>
-    <main id="app">
+    <main>
         <!-- HEADER -->
         <div class="row">
             <header class="main-header">
@@ -20,9 +20,7 @@
 export default {
     name: 'app',
     data () {
-        return {
-            msg: 'Welcome to Your Vue.js App'
-        }
+        return {}
     }
 }
 </script>

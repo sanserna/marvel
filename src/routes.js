@@ -5,6 +5,6 @@ export const routes = [{
     path: '/',
     component: Home
 }, {
-    path: '/character_detail',
+    path: '/character_detail/:id',
     component: CharacterDetail
 }];

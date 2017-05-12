@@ -4,7 +4,7 @@
             <img class="character__logo" :src="thumbnailSrc">
             <h3 class="character__name">{{ name }}</h3>
             <p class="character__desc">{{ description || 'No description...' }}</p>
-            <button class="character__btn">view more</button>
+            <button class="character__btn" @click="viewMore">view more</button>
             <div class="character__comics">
                 <h4>Related comics</h4>
                 <template v-if="comics.length > 0">
@@ -26,13 +26,22 @@ export default {
         comics: Array
     },
     computed: {
-        thumbnailSrc() {
+        thumbnailSrc () {
+
             return `${this.thumbnail.path}.${this.thumbnail.extension}`
+
         }
     },
     methods: {
-        getFirstFourComics() {
+        getFirstFourComics () {
+
             return this.comics.slice(0, 4);
+
+        },
+        viewMore () {
+
+            this.$emit('view-more', this.id);
+
         }
     }
 }
