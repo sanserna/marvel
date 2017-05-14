@@ -71,7 +71,8 @@ export default {
 
         showComicInfo (uri) {
 
-            comicsApi.defaults.url = uri;
+            comicsApi.defaults.url = uri.replace('http', 'https');
+            console.log(comicsApi.defaults.url);
 
             comicsApi.request()
                 .then(response => {
@@ -104,7 +105,6 @@ export default {
         addRandomComics () {
 
             let qtyRandomItems = this.comics.length < 3 ? this.comics.length : 3;
-            // let qtyRandomItems = 3;
 
             console.log(this.comics.length);
 

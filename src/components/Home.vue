@@ -57,7 +57,7 @@ export default {
 
         fetchCharacters () {
 
-            let characters = null;
+            let characters = localStorage.getItem('characters');
 
             if (characters !== null) {
 
