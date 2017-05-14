@@ -116,7 +116,7 @@ export default {
 
                 if (!this.favouriteExists(comicId)) {
 
-                    comicsApi.defaults.url = comicURI;
+                    comicsApi.defaults.url = comicURI.replace('http', 'https');
 
                     comicsApi.request()
                         .then(response => {
