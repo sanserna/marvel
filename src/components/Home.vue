@@ -57,7 +57,7 @@ export default {
 
         fetchCharacters () {
 
-            let characters = localStorage.getItem('characters');
+            let characters = null;
 
             if (characters !== null) {
 
@@ -79,7 +79,7 @@ export default {
                     })
                     .catch(error => {
 
-                        console.error(error.response.status)
+                        console.error(error);
 
                     })
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {apikey} from '../config.js';
 
-const baseURL = 'https://gateway.marvel.com:443/v1/public/';
+const baseURL = 'https://gateway.marvel.com:443/v1/publi/';
 
 export const charactersApi = axios.create({
     url: 'characters',

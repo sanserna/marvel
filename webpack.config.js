@@ -9,7 +9,7 @@ const cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
 const cssProd = ExtractTextPlugin.extract({
     fallback: 'style-loader',
     use: ['css-loader', 'sass-loader'],
-    publicPath: '/dist'
+    publicPath: './dist'
 });
 
 const cssConfig = isProduction ? cssProd : cssDev;
@@ -83,7 +83,7 @@ module.exports = {
             template: './src/index.html'
         }),
         new ExtractTextPlugin({
-            filename: '/css/[name].css',
+            filename: './css/[name].css',
             disable: !isProduction,
             allChunks: true
         })
