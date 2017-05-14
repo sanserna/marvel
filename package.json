@@ -19,6 +19,7 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "bootstrap-loader": "^2.1.0",
     "bootstrap-sass": "^3.3.7",
     "css-loader": "^0.28.1",
@@ -40,7 +41,10 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "lodash": "^4.17.4",
     "vue": "^2.3.2",
-    "vue-router": "^2.5.3"
+    "vue-router": "^2.5.3",
+    "vuex": "^2.3.1",
+    "vuex-router-sync": "^4.1.2"
   }
 }

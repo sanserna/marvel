@@ -71,68 +71,15 @@ input, select {
     padding: 30px 15px 20px 25px;
 }
 
-.sorter {
-    align-items: center;
-    background: url('assets/characters.png') no-repeat 25px center;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 30px 15px 65px;
-    width: 100%;
-
-    > .sorter__title {
-        margin: 0;
-    }
-
-    > .sorter__select {
-        -webkit-appearance: none;
-        appearance: none;
-        background: #FFF url('assets/btn_arrow_down.png') no-repeat 95% center;
-        background-size: auto 25px;
-        height: 40px;
-        padding: 0 10px;
-        width: 200px;
-    }
-}
-
-.favorites-wrapper {
-    background: darken($clouds, 5%);
-    min-height: 100%;
-    padding: 10px 30px;
-    width: 100%;
-
-    .favorites-wrapper__title {
-        background: url('assets/favourites.png') no-repeat 10% center;
-        background-size: 30px auto;
-        margin: 0;
-        padding: 20px 0 20px 35px;
-        text-align: center;
-    }
-}
-
-.favorite {
-    margin: 0;
-    padding: 0 0 20px 0;
-    position: relative;
-
-    button {
-        background: $blackMed url('assets/btn-delete.png') no-repeat center center;
-        background-size: 30px 30px;
-        border: none;
-        border-radius: 50%;
-        height: 40px;
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        width: 40px;
-    }
-
-    img {
-        width: 100%;
-    }
-
-    figcaption {
-        color: $blackMed;
-        text-align: center;
-        padding-top: 5px;
-    }
+.back-btn {
+    color: #FFF;
+    margin: 20px 0 0 40px;
+    background: #2E3333 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAATlBMVEUAAADzKS7yJy7yKC7/QEDyKC7xJjDzKi/yKC7/AADyKC7yKC7uIjPzKzHzJSzyKC7yJi3yKC7zKC7xJy7yKC3zKS7tJDfyKC3yKC4AAAAT72/7AAAAGHRSTlMALMKxBOo1K8cC6cgPKinoKOf1b2BYDspiG45bAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAN+wAADfsBC3c1mwAAAAd0SU1FB+EFDRMOCzx33AUAAABaSURBVDjLY2AYVoCRiZkFrzyrhAQbHnl2oDwHJx55LgkJbh7c8rwUyvPxUyYvICghISQsggOIijGIS+AF4oQVELSCoCOJUUEooIhRQSiyCEc34QRDOMkNbQAA6AIP3fF+L/8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTctMDUtMTNUMTk6MTQ6MTErMDI6MDCdb8QBAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE3LTA1LTEzVDE5OjE0OjExKzAyOjAw7DJ8vQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=') no-repeat 10px center;
+    border: none;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    padding: 0 50px;
+    width: 120px;
+    height: 40px;
+    text-transform: uppercase;
 }

@@ -18,6 +18,7 @@
 
 <script>
 export default {
+
     props: {
         id: Number,
         thumbnail: Object,
@@ -25,24 +26,31 @@ export default {
         description: String,
         comics: Array
     },
+
     computed: {
+
         thumbnailSrc () {
 
             return `${this.thumbnail.path}.${this.thumbnail.extension}`
 
         }
+
     },
     methods: {
+
         getFirstFourComics () {
 
             return this.comics.slice(0, 4);
 
         },
+
         viewMore () {
 
-            this.$emit('view-more', this.id);
+            this.$store.commit('setCharacterDetail', this.id);
+            this.$router.push(`character_detail/${this.id}`);
 
         }
+
     }
 }
 </script>

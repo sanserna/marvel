@@ -7,7 +7,7 @@
             <a href="#" class="pagination__item" :class="activePage(n)" @click.prevent="pageChanged(n)">{{ n }}</a>
         </li>
         <li>
-            <a href="#" class="pagination__item" v-if="this.currentPage < this.totalPages - 2">...</a>
+            <a href="#" class="pagination__item" v-if="currentPage < totalPages - 2">...</a>
         </li>
         <li>
             <a href="#" class="pagination__next" @click.prevent="pageUp"></a>
@@ -16,50 +16,40 @@
 </template>
 
 <script>
-export default {
-    props: {
-        currentPage: {
-            type: Number,
-            required: true
-        },
-        totalPages: Number,
-        itemsPerPage: Number,
-        totalItems: Number,
-        visiblePages: {
-            type: Number,
-            default: 5,
+import {mapGetters} from 'vuex';
 
-        }
-    },
+export default {
+
     computed: {
+
+        ...mapGetters(['totalCharacters', 'currentPage']),
 
         lastPage () {
 
-            if (this.totalPages) {
+            return this.totalCharacters % 10 === 0
+                ? this.totalCharacters / 10
+                : this.totalPages;
 
-                return this.totalPages;
+        },
 
-            } else {
+        totalPages () {
 
-                return this.totalItems % this.itemsPerPage === 0
-                    ? this.totalItems / this.itemsPerPage
-                    : Math.floor(this.totalItems / this.itemsPerPage) + 1;
-
-            }
+            return Math.ceil(this.totalCharacters / 10);
 
         },
 
         paginationRange () {
 
-            let start =
-                this.currentPage - this.visiblePages / 2 <= 0
-                ? 1 : this.currentPage + this.visiblePages / 2 > this.lastPage
-                ? this.lowerBound(this.lastPage - this.visiblePages + 1, 1)
-                : Math.ceil(this.currentPage - this.visiblePages / 2);
+            let visiblePages = 5;
+
+            let start = this.currentPage - visiblePages / 2 <= 0
+                ? 1 : this.currentPage + visiblePages / 2 > this.lastPage
+                ? this.lowerBound(this.lastPage - visiblePages + 1, 1)
+                : Math.ceil(this.currentPage - visiblePages / 2);
 
             let range = [];
 
-            for (let i = 0; i < this.visiblePages && i < this.lastPage; i++) {
+            for (let i = 0; i < visiblePages && i < this.lastPage; i++) {
 
                 range.push(start + i);
 
@@ -86,19 +76,19 @@ export default {
 
         pageChanged (pageNum) {
 
-            this.$emit('page-changed', pageNum);
+            this.$store.commit('setCurrentPage', pageNum);
 
         },
 
         pageDown () {
 
-            this.$emit('page-changed', this.currentPage > 1 ? this.currentPage - 1 : this.currentPage);
+            this.$store.commit('setCurrentPage', this.currentPage > 1 ? this.currentPage - 1 : this.currentPage);
 
         },
 
         pageUp () {
 
-            this.$emit('page-changed', this.currentPage < this.totalPages ? this.currentPage + 1 : this.currentPage);
+            this.$store.commit('setCurrentPage', this.currentPage < this.totalPages ? this.currentPage + 1 : this.currentPage);
 
         }
 
