@@ -4,6 +4,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import _ from 'lodash';
 import {charactersApi} from '../api/marvelApi';
+import JSON3 from 'json3';
 
 Vue.use(Vuex);
 

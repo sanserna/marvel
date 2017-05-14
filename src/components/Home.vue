@@ -31,6 +31,7 @@ import Character from './Character.vue';
 import Pagination from './Pagination.vue';
 import {mapState, mapGetters, mapMutations} from 'vuex';
 import {charactersApi} from '../api/marvelApi';
+import JSON3 from 'json3';
 
 export default {
 
